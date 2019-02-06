@@ -13,10 +13,132 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\rapidjson">
+      <UniqueIdentifier>{c2ef6781-8926-4479-8ca9-929f779506dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\rapidjson\error">
+      <UniqueIdentifier>{03ee58a6-5485-413f-acca-45b0cdf9288d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\rapidjson\internal">
+      <UniqueIdentifier>{7dda06bb-0927-47e2-a74f-43f645cef0a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\rapidjson\msinttypes">
+      <UniqueIdentifier>{e3e6a27e-0029-4ae5-9770-040a3cb9ca9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\rapidjson\allocators.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\cursorstreamwrapper.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\document.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\encodedstream.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\encodings.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\filereadstream.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\filewritestream.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\fwd.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\istreamwrapper.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\memorybuffer.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\memorystream.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\ostreamwrapper.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\pointer.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\prettywriter.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\rapidjson.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\reader.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\schema.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\stream.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\stringbuffer.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\writer.h">
+      <Filter>ソース ファイル\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\error\en.h">
+      <Filter>ソース ファイル\rapidjson\error</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\error\error.h">
+      <Filter>ソース ファイル\rapidjson\error</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\internal\biginteger.h">
+      <Filter>ソース ファイル\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\internal\diyfp.h">
+      <Filter>ソース ファイル\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\internal\dtoa.h">
+      <Filter>ソース ファイル\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\internal\ieee754.h">
+      <Filter>ソース ファイル\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\internal\itoa.h">
+      <Filter>ソース ファイル\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\internal\meta.h">
+      <Filter>ソース ファイル\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\internal\pow10.h">
+      <Filter>ソース ファイル\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\internal\regex.h">
+      <Filter>ソース ファイル\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\internal\stack.h">
+      <Filter>ソース ファイル\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\internal\strfunc.h">
+      <Filter>ソース ファイル\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\internal\strtod.h">
+      <Filter>ソース ファイル\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\internal\swap.h">
+      <Filter>ソース ファイル\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\msinttypes\inttypes.h">
+      <Filter>ソース ファイル\rapidjson\msinttypes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\rapidjson\msinttypes\stdint.h">
+      <Filter>ソース ファイル\rapidjson\msinttypes</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
