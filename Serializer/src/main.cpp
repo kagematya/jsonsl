@@ -1,5 +1,7 @@
 ﻿#include <iostream>
 #include "rapidjson/document.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/prettywriter.h"
 using namespace std;
 using namespace rapidjson;
 
@@ -73,11 +75,48 @@ void rapidjson_test()
 	}
 }
 
+
+void json_writer()
+{
+	StringBuffer s;
+	Writer<StringBuffer> writer(s);
+
+	//PrettyWriter<StringBuffer> writer(s);
+	//writer.SetIndent('\t', 1);
+
+
+	writer.StartObject();
+
+	writer.Key("key");
+	writer.String("value");
+
+	writer.Key("object");
+	writer.StartObject();
+		writer.Key("key");
+		writer.Int(123);
+	writer.EndObject();
+	
+	writer.Key("array");
+	writer.StartArray();
+		writer.Int(1);
+		writer.Int(2);
+		writer.Int(3);
+		writer.Int(4);
+		writer.Int(5);
+	writer.EndArray();
+
+	writer.EndObject();
+
+	const char* result = s.GetString();
+	cout << result;
+}
+
 int main() {
 
 	cout << "test" << endl;
 
 	rapidjson_test();
+	json_writer();
 
 
 	char c;
