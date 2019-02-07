@@ -4,6 +4,24 @@
 #include "rapidjson/writer.h"
 #include <string>
 
+
+class JSONOutputArchive;
+
+// T型がserialize()というメンバ関数を持っているかどうかを判別
+template<typename T>
+class has_memfun_serialize {
+private:
+	template<typename U>
+	static auto check(U v) -> decltype(v.serialize(std::declval<JSONOutputArchive&>()), std::true_type());
+
+	static std::false_type check(...);		// 定義がないときはこちらが有効になる
+
+public:
+	static constexpr bool value = decltype( check(std::declval<T>()) )::value;
+};
+
+
+
 /**
  * key-valueの構造
  */
@@ -72,6 +90,13 @@ private:
 	void saveValue(char const * s)	{ m_writer.String(s);	}
 	void saveValue(std::string const & s) { m_writer.String(s.c_str(), static_cast<rapidjson::SizeType>(s.size())); }
 	//void saveValue(std::nullptr_t)	{ m_writer.Null();		}
+
+	//template<class T>
+	//void saveValue(T& t) {	// クラスはこっちにくる
+	//	m_writer.StartObject();
+	//	t.serialize(*this);
+	//	m_writer.EndObject();
+	//}
 
 
 private:

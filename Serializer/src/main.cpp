@@ -122,6 +122,21 @@ void json_writer()
 	cout << result << endl;
 }
 
+
+struct Hoge {
+	Hoge(int i) {}
+	int a = 999;
+	const char* c = "bbb";
+	double d = 123.4;
+	
+	void serialize(JSONOutputArchive& archive) {
+		archive(make_nvp("a", a));
+		archive(make_nvp("c", c));
+		archive(make_nvp("d", d));
+	}
+};
+
+
 void jsonoutputarchive() {
 	ostringstream s;
 	{
@@ -144,6 +159,9 @@ void jsonoutputarchive() {
 		archive(make_nvp("name", string("str")));
 		archive(make_nvp("name", 3.3f));
 		archive(make_nvp("name", 3.333));
+
+		//Hoge hoge;
+		//archive(make_nvp("hoge", hoge));
 	}
 
 	const string& result = s.str();
@@ -153,6 +171,8 @@ void jsonoutputarchive() {
 int main() {
 
 	cout << "test" << endl;
+	cout << has_memfun_serialize<Hoge>::value << endl;
+	cout << has_memfun_serialize<int>::value << endl;
 
 	rapidjson_test();
 	json_writer();
