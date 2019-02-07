@@ -3,21 +3,21 @@
 #include "rapidjson/ostreamwrapper.h"
 #include "rapidjson/writer.h"
 #include <string>
+#include <type_traits>
 
 
-class JSONOutputArchive;
 
 // T型がserialize()というメンバ関数を持っているかどうかを判別
-template<typename T>
+template<typename T, typename Archive>
 class has_memfun_serialize {
 private:
-	template<typename U>
-	static auto check(U v) -> decltype(v.serialize(std::declval<JSONOutputArchive&>()), std::true_type());
+	template<typename U, typename A>
+	static auto check(U v, A& a) -> decltype(v.serialize(a), std::true_type());
 
 	static std::false_type check(...);		// 定義がないときはこちらが有効になる
 
 public:
-	static constexpr bool value = decltype( check(std::declval<T>()) )::value;
+	static constexpr bool value = decltype( check(std::declval<T>(), std::declval<Archive&>()) )::value;
 };
 
 
@@ -91,12 +91,12 @@ private:
 	void saveValue(std::string const & s) { m_writer.String(s.c_str(), static_cast<rapidjson::SizeType>(s.size())); }
 	//void saveValue(std::nullptr_t)	{ m_writer.Null();		}
 
-	//template<class T>
-	//void saveValue(T& t) {	// クラスはこっちにくる
-	//	m_writer.StartObject();
-	//	t.serialize(*this);
-	//	m_writer.EndObject();
-	//}
+	template<class T, std::enable_if_t<has_memfun_serialize<T, JSONOutputArchive>::value>* = nullptr>
+	void saveValue(T& t) {	// serializeメンバ関数を持ってればこっちにくる
+		m_writer.StartObject();
+		t.serialize(*this);
+		m_writer.EndObject();
+	}
 
 
 private:

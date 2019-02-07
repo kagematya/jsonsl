@@ -124,7 +124,7 @@ void json_writer()
 
 
 struct Hoge {
-	Hoge(int i) {}
+	//Hoge(int i) {}
 	int a = 999;
 	const char* c = "bbb";
 	double d = 123.4;
@@ -160,19 +160,37 @@ void jsonoutputarchive() {
 		archive(make_nvp("name", 3.3f));
 		archive(make_nvp("name", 3.333));
 
-		//Hoge hoge;
-		//archive(make_nvp("hoge", hoge));
+		Hoge hoge;
+		archive(make_nvp("hoge", hoge));
 	}
 
 	const string& result = s.str();
 	cout << result;
 }
 
+
+template<typename T, enable_if_t<is_integral<T>::value>* = nullptr>
+void func(T t) {
+	std::cout << t << "は整数だよ" << std::endl;
+}
+
+void func(...) {
+	std::cout << "引数は整数じゃないよ" << std::endl;
+}
+
+
+
+
 int main() {
 
+	func(10);       // 10は整数だよ
+	func('c');      // cは整数だよ
+	func(3.14f);    // 引数は整数じゃないよ
+
+
 	cout << "test" << endl;
-	cout << has_memfun_serialize<Hoge>::value << endl;
-	cout << has_memfun_serialize<int>::value << endl;
+	cout << has_memfun_serialize<Hoge, JSONOutputArchive>::value << endl;
+	cout << has_memfun_serialize<int, JSONOutputArchive>::value << endl;
 
 	rapidjson_test();
 	json_writer();
