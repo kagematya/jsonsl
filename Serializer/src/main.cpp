@@ -136,6 +136,16 @@ struct Hoge {
 	}
 };
 
+struct Fuga {
+	Hoge h;
+	Hoge hh;
+	void serialize(JSONOutputArchive& archive) {
+		archive(make_nvp("h", h));
+		archive(make_nvp("hh", hh));
+	}
+};
+
+
 
 void jsonoutputarchive() {
 	ostringstream s;
@@ -159,9 +169,12 @@ void jsonoutputarchive() {
 		archive(make_nvp("name", string("str")));
 		archive(make_nvp("name", 3.3f));
 		archive(make_nvp("name", 3.333));
-
+		
 		Hoge hoge;
 		archive(make_nvp("hoge", hoge));
+
+		Fuga fuga;
+		archive(make_nvp("fuga", fuga));
 	}
 
 	const string& result = s.str();
