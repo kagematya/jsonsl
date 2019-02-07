@@ -126,14 +126,21 @@ void jsonoutputarchive() {
 	ostringstream s;
 	{
 		JSONOutputArchive archive(s);
-		int val = 3;
+		//int val = 3;
 		//archive(val);
 		//archive("aaa");
 		//char a = 'a';	// intになるっぽい
 		//archive(a);
 		//size_t size = 9;	// unsignedになるっぽい
 		//archive(size);
-		archive(string("aaa"));
+		//archive(string("aaa"));
+
+		int val = 333;
+		archive(make_nvp("name", val));
+		archive(make_nvp("name", val));
+		archive(make_nvp("name", val));
+		archive(make_nvp("name", val));
+
 	}
 
 	const string& result = s.str();
