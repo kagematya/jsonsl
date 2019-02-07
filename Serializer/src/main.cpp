@@ -138,9 +138,12 @@ void jsonoutputarchive() {
 		int val = 333;
 		archive(make_nvp("name", val));
 		archive(make_nvp("name", val));
-		archive(make_nvp("name", val));
-		archive(make_nvp("name", val));
-
+		archive(make_nvp("name", 999));
+		archive(make_nvp("name", 123));
+		archive(make_nvp("name", "aaa"));
+		archive(make_nvp("name", string("str")));
+		archive(make_nvp("name", 3.3f));
+		archive(make_nvp("name", 3.333));
 	}
 
 	const string& result = s.str();

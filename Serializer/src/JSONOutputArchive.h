@@ -26,6 +26,12 @@ NameValuePair<T> make_nvp(const char* name, T& value)
 	return { name, value };
 }
 
+template <class T>
+NameValuePair<T> make_nvp(const char* name, T&& value)
+{
+	return { name, value };	// 一時変数用だけど残すかどうか微妙
+}
+
 /**
  * JSON形式で出力する
  */
