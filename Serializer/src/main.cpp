@@ -1,7 +1,12 @@
-﻿#include <iostream>
-#include "rapidjson/document.h"
+﻿#include "rapidjson/document.h"
+#include "rapidjson/ostreamwrapper.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/prettywriter.h"
+#include <iostream>
+#include <sstream>
+
+#include "JSONOutputArchive.h"
+
 using namespace std;
 using namespace rapidjson;
 
@@ -78,8 +83,12 @@ void rapidjson_test()
 
 void json_writer()
 {
-	StringBuffer s;
-	Writer<StringBuffer> writer(s);
+	ostringstream s;
+	OStreamWrapper osw(s);
+	Writer<OStreamWrapper> writer(osw);
+
+	//StringBuffer s;
+	//Writer<StringBuffer> writer(s);
 
 	//PrettyWriter<StringBuffer> writer(s);
 	//writer.SetIndent('\t', 1);
@@ -107,7 +116,27 @@ void json_writer()
 
 	writer.EndObject();
 
-	const char* result = s.GetString();
+	//const char* result = s.GetString();
+	osw.Flush();
+	const string& result = s.str();
+	cout << result << endl;
+}
+
+void jsonoutputarchive() {
+	ostringstream s;
+	{
+		JSONOutputArchive archive(s);
+		int val = 3;
+		//archive(val);
+		//archive("aaa");
+		//char a = 'a';	// intになるっぽい
+		//archive(a);
+		//size_t size = 9;	// unsignedになるっぽい
+		//archive(size);
+		archive(string("aaa"));
+	}
+
+	const string& result = s.str();
 	cout << result;
 }
 
@@ -117,7 +146,7 @@ int main() {
 
 	rapidjson_test();
 	json_writer();
-
+	jsonoutputarchive();
 
 	char c;
 	cin >> c;

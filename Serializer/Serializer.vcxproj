@@ -114,6 +114,7 @@
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\JSONOutputArchive.h" />
     <ClInclude Include="src\rapidjson\allocators.h" />
     <ClInclude Include="src\rapidjson\cursorstreamwrapper.h" />
     <ClInclude Include="src\rapidjson\document.h" />
