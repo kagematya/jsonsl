@@ -34,6 +34,19 @@ public:
 	static constexpr bool value = decltype( check(std::declval<T&>(), std::declval<Archive&>()) )::value;
 };
 
+// T型に対してserialize_array(Arcive&, T&)という関数が用意されているかどうかを判定
+template<typename T, typename Archive>
+class has_fun_serialize_array {
+private:
+	template <typename U, typename A>
+	static auto check(U& v, A& a) -> decltype(serialize_array(a, v), std::true_type());
+
+	static std::false_type check(...);		// 定義がないときはこちらが有効になる
+
+public:
+	static constexpr bool value = decltype(check(std::declval<T&>(), std::declval<Archive&>()))::value;
+};
+
 
 
 /**
@@ -80,11 +93,12 @@ public:
 		m_writer.EndObject();
 	}
 
-	//template<class T>
-	//JSONOutputArchive& operator()(T& t) {
-	//	saveValue(t);
-	//	return *this;
-	//}
+	
+	template<class T>
+	JSONOutputArchive& operator()(T& t) {	// 配列出力用
+		saveValue(t);
+		return *this;
+	}
 
 	template<class T>
 	JSONOutputArchive& operator()(NameValuePair<T>& nvp) {
@@ -119,6 +133,13 @@ private:
 		m_writer.EndObject();
 	}
 	
+	template<class T, std::enable_if_t<has_fun_serialize_array<T, JSONOutputArchive>::value>* = nullptr>
+	void saveValue(T& t) {	// serialize_array(Arcive&, T&)があるならばこっちにくる
+		m_writer.StartArray();
+		serialize_array(*this, t);
+		m_writer.EndArray();
+	}
+
 
 private:
 	rapidjson::OStreamWrapper m_writeStream;

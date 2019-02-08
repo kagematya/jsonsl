@@ -4,6 +4,7 @@
 #include "rapidjson/prettywriter.h"
 #include <iostream>
 #include <sstream>
+#include <vector>
 
 #include "JSONOutputArchive.h"
 
@@ -188,6 +189,18 @@ void jsonoutputarchive() {
 
 		Vector2 vec;
 		archive(make_nvp("vec", vec));
+
+		vector<int> iii = { 1,2,3,4,5 };
+		archive(make_nvp("iii", iii));
+
+		vector<Fuga> fff(3);
+		archive(make_nvp("fff", fff));
+
+		vector<Vector2> vvv(3);
+		archive(make_nvp("vvv", vvv));
+
+		vector<vector<int>> vecvec = { {1,2,3},{4,5,6} };
+		archive(make_nvp("vecvec", vecvec));
 	}
 
 	const string& result = s.str();
@@ -205,6 +218,15 @@ void func(...) {
 }
 
 
+
+template<class T, class A>
+void serialize_array(JSONOutputArchive& archive, vector<T, A>& v)
+{
+	//archive(size_tag(v.size()));
+	for (T& t : v){
+		archive(t);
+	}
+}
 
 
 int main() {
