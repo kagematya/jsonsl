@@ -143,5 +143,8 @@
     <ClInclude Include="src\JSONOutputArchive.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\JSONInputArchive.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
