@@ -21,6 +21,20 @@ public:
 };
 
 
+// T型に対してserialize(Arcive&, T&)という関数が用意されているかどうかを判定
+template<typename T, typename Archive>
+class has_fun_serialize {
+private:
+	template <typename U, typename A>
+	static auto check(U& v, A& a) -> decltype( serialize(a, v), std::true_type());
+
+	static std::false_type check(...);		// 定義がないときはこちらが有効になる
+
+public:
+	static constexpr bool value = decltype( check(std::declval<T&>(), std::declval<Archive&>()) )::value;
+};
+
+
 
 /**
  * key-valueの構造
@@ -87,8 +101,8 @@ private:
 	void saveValue(int64_t i64)		{ m_writer.Int64(i64);	}
 	void saveValue(uint64_t u64)	{ m_writer.Uint64(u64);	}
 	void saveValue(double d)		{ m_writer.Double(d);	}
-	void saveValue(char const * s)	{ m_writer.String(s);	}
-	void saveValue(std::string const & s) { m_writer.String(s.c_str(), static_cast<rapidjson::SizeType>(s.size())); }
+	void saveValue(const char* s)	{ m_writer.String(s);	}
+	void saveValue(const std::string& s) { m_writer.String(s.c_str(), static_cast<rapidjson::SizeType>(s.size())); }
 	//void saveValue(std::nullptr_t)	{ m_writer.Null();		}
 
 	template<class T, std::enable_if_t<has_memfun_serialize<T, JSONOutputArchive>::value>* = nullptr>
@@ -98,6 +112,13 @@ private:
 		m_writer.EndObject();
 	}
 
+	template<class T, std::enable_if_t<has_fun_serialize<T, JSONOutputArchive>::value>* = nullptr>
+	void saveValue(T& t) {	// serialize(Arcive&, T&)があるならばこっちにくる
+		m_writer.StartObject();
+		serialize(*this, t);
+		m_writer.EndObject();
+	}
+	
 
 private:
 	rapidjson::OStreamWrapper m_writeStream;

@@ -145,7 +145,17 @@ struct Fuga {
 	}
 };
 
+struct Vector2 {
+	int x = 3;
+	int y = 4;
+};
 
+// 非侵入型
+void serialize(JSONOutputArchive& archive, Vector2& v)
+{
+	archive(make_nvp("x", v.x));
+	archive(make_nvp("y", v.y));
+}
 
 void jsonoutputarchive() {
 	ostringstream s;
@@ -175,6 +185,9 @@ void jsonoutputarchive() {
 
 		Fuga fuga;
 		archive(make_nvp("fuga", fuga));
+
+		Vector2 vec;
+		archive(make_nvp("vec", vec));
 	}
 
 	const string& result = s.str();
