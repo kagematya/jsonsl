@@ -50,27 +50,41 @@ void serialize_array(JSONInputArchive& archive, vector<T, A>& v)
 }
 #endif
 
+static const char* s_json = R"(
+{
+    "string" : "hogehoge",
+    "number" : 123,
+    "array" : [0,1,2,3,4,5],
+    "object" : {
+        "foo" : "bar",
+        "baz" : 456,
+        "double" : 0.123
+    }
+}
+)";
+
 void jsonReadTest() {
-#if 0
-	istringstream s;
+
+	istringstream s(s_json);
 	{
 		JSONInputArchive archive(s);
-		int val = 333;
-		archive(make_nvp("name", val));
-		archive(make_nvp("name", val));
-		archive(make_nvp("name", 999));
-		archive(make_nvp("name", 123));
-		archive(make_nvp("name", "aaa"));
-		archive(make_nvp("name", string("str")));
-		archive(make_nvp("name", 3.3f));
-		archive(make_nvp("name", 3.333));
+		string str;
+		int num;
+
+		archive(make_nvp("string", str));
+		archive(make_nvp("number", num));
+		
+		//struct Obj {
+
+		//};
+		//Obj obj;
+		//archive(make_nvp("object", obj));
+
+		cout << "str:" << str << endl;
+		cout << "num:" << num << endl;
 
 		//Hoge hoge;
 		//archive(make_nvp("hoge", hoge));
 	}
-
-	const string& result = s.str();
-	cout << result;
-#endif
 }
 
