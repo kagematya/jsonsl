@@ -7,6 +7,18 @@
 #include <stack>
 
 /**
+ * 配列のサイズを取得するための構造
+ */
+struct SizeTag {
+	SizeTag(size_t& size) : m_size(size){}
+	size_t& m_size;
+};
+
+SizeTag make_size_tag(size_t& size){
+	return SizeTag(size);
+}
+
+/**
  * JSON形式を読み取る
  */
 class JSONInputArchive {
@@ -26,13 +38,25 @@ public:
 	{
 	}
 
-#if 0
+
 	template<class T>
-	JSONInputArchive& operator()(T& t) {	// 配列出力用
+	JSONInputArchive& operator()(T& t) {	// 配列読み込み用
+		assert(!m_arrayIndexStack.empty());
+		int index = m_arrayIndexStack.top();
+		
+		rapidjson::Value& array_val = *(m_stack.top());	// array
+		assert(array_val.IsArray());
+		rapidjson::Value& index_val = array_val[index];	// array[i]
+
+		m_stack.push(&index_val);						// array[i]を読み込むため積む
 		loadValue(t);
+		m_stack.pop();
+
+		index++;
+		m_arrayIndexStack.top() = index;	// 読み終えたのでi++して保存
+		
 		return *this;
 	}
-#endif
 
 	template<class T>
 	JSONInputArchive& operator()(NameValuePair<T>& nvp) {
@@ -44,6 +68,12 @@ public:
 		loadValue(nvp.m_value);
 		m_stack.pop();
 		
+		return *this;
+	}
+
+	// 配列のサイズを取得する
+	JSONInputArchive& operator()(SizeTag& sizetag) {
+		sizetag.m_size = m_stack.top()->Size();
 		return *this;
 	}
 
@@ -73,19 +103,18 @@ private:
 		//m_writer.EndObject();
 	}
 
-#if 0
 	template<class T, std::enable_if_t<has_fun_serialize_array<T, JSONInputArchive>::value>* = nullptr>
 	void loadValue(T& t) {	// serialize_array(Arcive&, T&)があるならばこっちにくる
-		m_writer.StartArray();
+		m_arrayIndexStack.push(0);	// 配列アクセスが行われるので、最初のインデックスを積む
 		serialize_array(*this, t);
-		m_writer.EndArray();
+		m_arrayIndexStack.pop();
 	}
-#endif
 
 private:
 	rapidjson::IStreamWrapper m_readStream;
 	rapidjson::Document m_document;
 	
-	std::stack<rapidjson::Value*> m_stack;	//ノードの階層をたどるため、スタックに積んでいく
+	std::stack<rapidjson::Value*> m_stack;	// ノードの階層をたどるため、スタックに積んでいく
+	std::stack<int> m_arrayIndexStack;		// 配列のインデックスを保存する
 };
 

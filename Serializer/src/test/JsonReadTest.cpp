@@ -4,17 +4,6 @@
 #include <vector>
 using namespace std;
 
-#if 0
-template<class T, class A>
-void serialize_array(JSONInputArchive& archive, vector<T, A>& v)
-{
-	//archive(size_tag(v.size()));
-	for (T& t : v) {
-		archive(t);
-	}
-}
-#endif
-
 static const char* s_json = R"(
 {
     "string" : "hogehoge",
@@ -40,7 +29,8 @@ static const char* s_json = R"(
 	"vec2" : {
 		"x" : 888,
 		"y" : 777
-	}
+	},
+	"arrayarray" : [[0,1,2,3,4,5], [6,7,8,9,10]]
 }
 )";
 
@@ -78,6 +68,18 @@ void serialize(JSONInputArchive& archive, Vector2& v)
 	archive(make_nvp("y", v.y));
 }
 
+template<class T, class A>
+void serialize_array(JSONInputArchive& archive, vector<T, A>& v)
+{
+	size_t size;
+	archive(make_size_tag(size));
+
+	v.resize(size);
+	for (T& t : v) {
+		archive(t);
+	}
+}
+
 
 void jsonReadTest() {
 
@@ -89,7 +91,7 @@ void jsonReadTest() {
 
 		archive(make_nvp("string", str));
 		archive(make_nvp("number", num));
-		
+
 		//struct Obj {
 
 		//};
@@ -101,7 +103,7 @@ void jsonReadTest() {
 
 		Hoge h;
 		archive(make_nvp("hoge", h));
-		
+
 		Fuga f;
 		archive(make_nvp("fuga", f));
 		cout << f.hh.d << endl;
@@ -110,8 +112,22 @@ void jsonReadTest() {
 		archive(make_nvp("vec2", vec2));
 		cout << "Vec2(" << vec2.x << ", " << vec2.y << ")" << endl;
 
-		//Hoge hoge;
-		//archive(make_nvp("hoge", hoge));
+		vector<int> arr;
+		archive(make_nvp("array", arr));
+		for (int i : arr) {
+			cout << i << ", ";
+		}
+		cout << endl;
+
+		vector<vector<int>> arrarr;
+		archive(make_nvp("arrayarray", arrarr));
+		for (auto& ar : arrarr) {
+			for (int i : ar) {
+				cout << i << ", ";
+			}
+			cout << endl;
+		}
+		cout << endl;
 	}
 }
 
