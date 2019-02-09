@@ -5,21 +5,6 @@
 using namespace std;
 
 #if 0
-
-
-struct Vector2 {
-	int x = 3;
-	int y = 4;
-};
-
-// 非侵入型
-void serialize(JSONInputArchive& archive, Vector2& v)
-{
-	archive(make_nvp("x", v.x));
-	archive(make_nvp("y", v.y));
-}
-
-
 template<class T, class A>
 void serialize_array(JSONInputArchive& archive, vector<T, A>& v)
 {
@@ -51,6 +36,10 @@ static const char* s_json = R"(
 	        "s" : "fffff",
 	        "d" : 0.234
 	    }
+	},
+	"vec2" : {
+		"x" : 888,
+		"y" : 777
 	}
 }
 )";
@@ -75,6 +64,19 @@ struct Fuga {
 		archive(make_nvp("hh", hh));
 	}
 };
+
+
+struct Vector2 {
+	int x = 3;
+	int y = 4;
+};
+
+// 非侵入型
+void serialize(JSONInputArchive& archive, Vector2& v)
+{
+	archive(make_nvp("x", v.x));
+	archive(make_nvp("y", v.y));
+}
 
 
 void jsonReadTest() {
@@ -103,6 +105,10 @@ void jsonReadTest() {
 		Fuga f;
 		archive(make_nvp("fuga", f));
 		cout << f.hh.d << endl;
+
+		Vector2 vec2;
+		archive(make_nvp("vec2", vec2));
+		cout << "Vec2(" << vec2.x << ", " << vec2.y << ")" << endl;
 
 		//Hoge hoge;
 		//archive(make_nvp("hoge", hoge));

@@ -66,14 +66,14 @@ private:
 		//m_writer.EndObject();
 	}
 
-#if 0
 	template<class T, std::enable_if_t<has_fun_serialize<T, JSONInputArchive>::value>* = nullptr>
 	void loadValue(T& t) {	// serialize(Arcive&, T&)があるならばこっちにくる
-		m_writer.StartObject();
+		//m_writer.StartObject();
 		serialize(*this, t);
-		m_writer.EndObject();
+		//m_writer.EndObject();
 	}
 
+#if 0
 	template<class T, std::enable_if_t<has_fun_serialize_array<T, JSONInputArchive>::value>* = nullptr>
 	void loadValue(T& t) {	// serialize_array(Arcive&, T&)があるならばこっちにくる
 		m_writer.StartArray();
