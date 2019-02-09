@@ -4,7 +4,7 @@
 #include <vector>
 using namespace std;
 
-
+namespace{
 struct Hoge {
 	//Hoge(int i) {}
 	int a = 999;
@@ -48,7 +48,7 @@ void serialize_array(JSONOutputArchive& archive, vector<T, A>& v)
 		archive(t);
 	}
 }
-
+} //namespace
 
 void jsonWriteTest() {
 	ostringstream s;

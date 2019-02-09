@@ -34,6 +34,7 @@ static const char* s_json = R"(
 }
 )";
 
+namespace{
 struct Hoge {
 	int a = 999;
 	string s = "bbb";
@@ -79,7 +80,7 @@ void serialize_array(JSONInputArchive& archive, vector<T, A>& v)
 		archive(t);
 	}
 }
-
+} //namespace
 
 void jsonReadTest() {
 

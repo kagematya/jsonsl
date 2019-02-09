@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+namespace {
 struct Hoge {
 	int a;
 
@@ -10,7 +11,7 @@ struct Hoge {
 		archive(make_nvp("a", a));
 	}
 };
-
+} //namespace
 
 void traitsTest()
 {
