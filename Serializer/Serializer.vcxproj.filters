@@ -146,5 +146,11 @@
     <ClInclude Include="src\JSONInputArchive.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\traits.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NameValuePair.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -116,6 +116,7 @@
   <ItemGroup>
     <ClInclude Include="src\JSONInputArchive.h" />
     <ClInclude Include="src\JSONOutputArchive.h" />
+    <ClInclude Include="src\NameValuePair.h" />
     <ClInclude Include="src\rapidjson\allocators.h" />
     <ClInclude Include="src\rapidjson\cursorstreamwrapper.h" />
     <ClInclude Include="src\rapidjson\document.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="src\rapidjson\stream.h" />
     <ClInclude Include="src\rapidjson\stringbuffer.h" />
     <ClInclude Include="src\rapidjson\writer.h" />
+    <ClInclude Include="src\traits.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
