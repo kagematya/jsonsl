@@ -64,14 +64,14 @@ void jsonWriteTest() {
 		//archive(string("aaa"));
 
 		int val = 333;
-		archive(make_nvp("name", val));
-		archive(make_nvp("name", val));
-		archive(make_nvp("name", 999));
-		archive(make_nvp("name", 123));
-		archive(make_nvp("name", "aaa"));
-		archive(make_nvp("name", string("str")));
-		archive(make_nvp("name", 3.3f));
-		archive(make_nvp("name", 3.333));
+		archive(make_nvp("name1", val));
+		archive(make_nvp("name2", val));
+		archive(make_nvp("name3", 999));
+		archive(make_nvp("name4", 123));
+		archive(make_nvp("name5", "aaa"));
+		archive(make_nvp("name6", string("str")));
+		archive(make_nvp("name7", 3.3f));
+		archive(make_nvp("name8", 3.333));
 
 		Hoge hoge;
 		archive(make_nvp("hoge", hoge));

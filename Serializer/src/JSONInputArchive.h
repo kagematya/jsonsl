@@ -1,22 +1,12 @@
 ﻿#pragma once
 
 #include "traits.h"
+#include "SizeTag.h"
 #include "NameValuePair.h"
 #include "rapidjson/document.h"
 #include "rapidjson/istreamwrapper.h"
 #include <stack>
 
-/**
- * 配列のサイズを取得するための構造
- */
-struct SizeTag {
-	SizeTag(size_t& size) : m_size(size){}
-	size_t& m_size;
-};
-
-SizeTag make_size_tag(size_t& size){
-	return SizeTag(size);
-}
 
 /**
  * JSON形式を読み取る
@@ -91,16 +81,12 @@ private:
 
 	template<class T, std::enable_if_t<has_memfun_serialize<T, JSONInputArchive>::value>* = nullptr>
 	void loadValue(T& t) {	// serializeメンバ関数を持ってればこっちにくる
-		//m_writer.StartObject();
 		t.serialize(*this);
-		//m_writer.EndObject();
 	}
 
 	template<class T, std::enable_if_t<has_fun_serialize<T, JSONInputArchive>::value>* = nullptr>
 	void loadValue(T& t) {	// serialize(Arcive&, T&)があるならばこっちにくる
-		//m_writer.StartObject();
 		serialize(*this, t);
-		//m_writer.EndObject();
 	}
 
 	template<class T, std::enable_if_t<has_fun_serialize_array<T, JSONInputArchive>::value>* = nullptr>

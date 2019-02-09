@@ -162,6 +162,7 @@
     <ClInclude Include="src\rapidjson\stream.h" />
     <ClInclude Include="src\rapidjson\stringbuffer.h" />
     <ClInclude Include="src\rapidjson\writer.h" />
+    <ClInclude Include="src\SizeTag.h" />
     <ClInclude Include="src\traits.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
