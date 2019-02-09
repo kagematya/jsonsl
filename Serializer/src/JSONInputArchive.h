@@ -29,6 +29,14 @@ public:
 	}
 
 
+	/**
+	 * @note
+	 *  配列の処理ではSizeTag処理後に、operator()が次々と呼ばれる事になる
+	 *  次の様な処理になっていればok。
+	 *		Value[i]をpush --> loadValue --> pop --> i++する（イテレータを進める）
+	 *
+	 *  また、階層構造に対応するためイテレータ(i)はserialize_arrayの前後でpush/popする
+	 */
 	template<class T>
 	JSONInputArchive& operator()(T& t) {	// 配列読み込み用
 		assert(!m_arrayIndexStack.empty());
