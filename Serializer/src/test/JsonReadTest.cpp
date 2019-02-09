@@ -5,27 +5,7 @@
 using namespace std;
 
 #if 0
-struct Hoge {
-	//Hoge(int i) {}
-	int a = 999;
-	const char* c = "bbb";
-	double d = 123.4;
 
-	void serialize(JSONInputArchive& archive) {
-		archive(make_nvp("a", a));
-		archive(make_nvp("c", c));
-		archive(make_nvp("d", d));
-	}
-};
-
-struct Fuga {
-	Hoge h;
-	Hoge hh;
-	void serialize(JSONInputArchive& archive) {
-		archive(make_nvp("h", h));
-		archive(make_nvp("hh", hh));
-	}
-};
 
 struct Vector2 {
 	int x = 3;
@@ -55,13 +35,47 @@ static const char* s_json = R"(
     "string" : "hogehoge",
     "number" : 123,
     "array" : [0,1,2,3,4,5],
-    "object" : {
-        "foo" : "bar",
-        "baz" : 456,
-        "double" : 0.123
-    }
+    "hoge" : {
+        "a" : 111,
+        "s" : "sssss",
+        "d" : 0.123
+    },
+	"fuga" : {
+		"h" : {
+	        "a" : 222,
+	        "s" : "ddddd",
+	        "d" : 0.321
+	    },
+		"hh" : {
+	        "a" : 333,
+	        "s" : "fffff",
+	        "d" : 0.234
+	    }
+	}
 }
 )";
+
+struct Hoge {
+	int a = 999;
+	string s = "bbb";
+	double d = 123.4;
+
+	void serialize(JSONInputArchive& archive) {
+		archive(make_nvp("a", a));
+		archive(make_nvp("s", s));
+		archive(make_nvp("d", d));
+	}
+};
+
+struct Fuga {
+	Hoge h;
+	Hoge hh;
+	void serialize(JSONInputArchive& archive) {
+		archive(make_nvp("h", h));
+		archive(make_nvp("hh", hh));
+	}
+};
+
 
 void jsonReadTest() {
 
@@ -82,6 +96,13 @@ void jsonReadTest() {
 
 		cout << "str:" << str << endl;
 		cout << "num:" << num << endl;
+
+		Hoge h;
+		archive(make_nvp("hoge", h));
+		
+		Fuga f;
+		archive(make_nvp("fuga", f));
+		cout << f.hh.d << endl;
 
 		//Hoge hoge;
 		//archive(make_nvp("hoge", hoge));

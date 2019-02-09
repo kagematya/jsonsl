@@ -16,6 +16,7 @@ public:
 		, m_document()
 	{
 		m_document.ParseStream(m_readStream);
+		assert(!m_document.HasParseError());
 		assert(!m_document.IsArray());
 
 		m_stack.push(&m_document);	// 最初のノードをルートに設定する
@@ -57,14 +58,15 @@ private:
 	//void loadValue(const char* s)	{ m_writer.String(s);				}
 	void loadValue(std::string& s)	{ s = m_stack.top()->GetString();	}
 	//void loadValue(std::nullptr_t&)	{ m_writer.Null();		}
-#if 0
+
 	template<class T, std::enable_if_t<has_memfun_serialize<T, JSONInputArchive>::value>* = nullptr>
 	void loadValue(T& t) {	// serializeメンバ関数を持ってればこっちにくる
-		m_writer.StartObject();
+		//m_writer.StartObject();
 		t.serialize(*this);
-		m_writer.EndObject();
+		//m_writer.EndObject();
 	}
 
+#if 0
 	template<class T, std::enable_if_t<has_fun_serialize<T, JSONInputArchive>::value>* = nullptr>
 	void loadValue(T& t) {	// serialize(Arcive&, T&)があるならばこっちにくる
 		m_writer.StartObject();
