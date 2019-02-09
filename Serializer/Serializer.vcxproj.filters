@@ -45,6 +45,9 @@
     <ClCompile Include="src\test\TraitsTest.cpp">
       <Filter>ソース ファイル\test</Filter>
     </ClCompile>
+    <ClCompile Include="src\test\JsonReadTest.cpp">
+      <Filter>ソース ファイル\test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\rapidjson\allocators.h">

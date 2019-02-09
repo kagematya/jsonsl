@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\test\JsonReadTest.cpp" />
     <ClCompile Include="src\test\JsonWriteTest.cpp" />
     <ClCompile Include="src\test\RapidjsonReadTest.cpp" />
     <ClCompile Include="src\test\RapidjsonWriteTest.cpp" />
