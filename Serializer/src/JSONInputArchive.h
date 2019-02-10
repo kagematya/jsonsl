@@ -70,7 +70,8 @@ public:
 	}
 
 	// 配列のサイズを取得する
-	JSONInputArchive& operator()(SizeTag& sizetag) {
+	template<class T>
+	JSONInputArchive& operator()(SizeTag<T>& sizetag) {
 		sizetag.m_size = m_stack.top()->Size();
 		return *this;
 	}

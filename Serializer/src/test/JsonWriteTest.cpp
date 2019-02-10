@@ -43,7 +43,7 @@ void serialize(JSONOutputArchive& archive, Vector2& v)
 template<class T, class A>
 void serialize_array(JSONOutputArchive& archive, vector<T, A>& v)
 {
-	//archive(size_tag(v.size()));
+	archive(make_size_tag(v.size()));
 	for (T& t : v) {
 		archive(t);
 	}

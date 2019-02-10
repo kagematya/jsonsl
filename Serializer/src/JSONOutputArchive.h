@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "traits.h"
+#include "SizeTag.h"
 #include "NameValuePair.h"
 #include "rapidjson/ostreamwrapper.h"
 #include "rapidjson/writer.h"
@@ -35,6 +36,11 @@ public:
 		m_writer.Key(nvp.m_name);
 		saveValue(nvp.m_value);
 		return *this;
+	}
+
+	template<class T>
+	JSONOutputArchive& operator()(SizeTag<T>& sizetag) {
+		return *this;	/*特にやることはない*/
 	}
 
 
