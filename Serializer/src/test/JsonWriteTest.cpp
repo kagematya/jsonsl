@@ -73,6 +73,8 @@ void jsonWriteTest() {
 		archive(make_nvp("name7", 3.3f));
 		archive(make_nvp("name8", 3.333));
 
+		//archive(make_nvp("pointer", &val));	// これはstatic_assertになる
+
 		Hoge hoge;
 		archive(make_nvp("hoge", hoge));
 

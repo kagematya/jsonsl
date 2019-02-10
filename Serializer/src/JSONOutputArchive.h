@@ -27,12 +27,16 @@ public:
 	
 	template<class T>
 	JSONOutputArchive& operator()(T& t) {	// 配列出力用
+		static_assert(!std::is_pointer<T>::value || std::is_same<T, const char*>::value, "Pointer is not serialized");	// ポインタはシリアライズ非対応
+
 		saveValue(t);
 		return *this;
 	}
 
 	template<class T>
 	JSONOutputArchive& operator()(NameValuePair<T>& nvp) {
+		static_assert(!std::is_pointer<T>::value || std::is_same<T, const char*>::value, "Pointer is not serialized");	// ポインタはシリアライズ非対応
+
 		m_writer.Key(nvp.m_name);
 		saveValue(nvp.m_value);
 		return *this;

@@ -39,6 +39,8 @@ public:
 	 */
 	template<class T>
 	JSONInputArchive& operator()(T& t) {	// 配列読み込み用
+		static_assert(!std::is_pointer<T>::value, "Pointer is not serialized");	// ポインタはシリアライズ非対応
+
 		assert(!m_arrayIndexStack.empty());
 		int index = m_arrayIndexStack.top();
 		
@@ -58,6 +60,8 @@ public:
 
 	template<class T>
 	JSONInputArchive& operator()(NameValuePair<T>& nvp) {
+		static_assert(!std::is_pointer<T>::value, "Pointer is not serialized");	// ポインタはシリアライズ非対応
+
 		// keyを探す
 		rapidjson::Value::MemberIterator it = m_stack.top()->FindMember(nvp.m_name);
 		assert(it != m_stack.top()->MemberEnd());

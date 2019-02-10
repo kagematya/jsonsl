@@ -129,6 +129,9 @@ void jsonReadTest() {
 			cout << endl;
 		}
 		cout << endl;
+
+		//int val;
+		//archive(make_nvp("pointer", &val));	// これはstatic_assertになる
 	}
 }
 
