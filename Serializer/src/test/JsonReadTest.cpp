@@ -80,6 +80,20 @@ void serialize_array(JSONInputArchive& archive, vector<T, A>& v)
 		archive(t);
 	}
 }
+
+// load版
+struct Piyo {
+	int a = 999;
+	string s = "bbb";
+	double d = 123.4;
+
+	void load(JSONInputArchive& archive) {
+		archive(make_nvp("a", a));
+		archive(make_nvp("s", s));
+		archive(make_nvp("d", d));
+	}
+	//void serialize(JSONInputArchive& archive) {}		// 両方定義するとコンパイルエラーになる
+};
 } //namespace
 
 void jsonReadTest() {
@@ -129,6 +143,10 @@ void jsonReadTest() {
 			cout << endl;
 		}
 		cout << endl;
+
+		Piyo piyo;
+		archive(make_nvp("hoge", piyo));
+		cout << "piyo:" << piyo.a << ", " << piyo.s << ", " << piyo.d << endl;
 
 		//int val;
 		//archive(make_nvp("pointer", &val));	// これはstatic_assertになる

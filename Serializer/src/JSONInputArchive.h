@@ -109,6 +109,25 @@ private:
 		m_arrayIndexStack.pop();
 	}
 
+	
+	// load版の実装はserialize版のコピペ
+	template<class T, std::enable_if_t<has_memfun_load<T, JSONInputArchive>::value>* = nullptr>
+	void loadValue(T& t) {	// loadメンバ関数を持ってればこっちにくる
+		t.load(*this);
+	}
+
+	template<class T, std::enable_if_t<has_fun_load<T, JSONInputArchive>::value>* = nullptr>
+	void loadValue(T& t) {	// load(Arcive&, T&)があるならばこっちにくる
+		load(*this, t);
+	}
+
+	template<class T, std::enable_if_t<has_fun_load_array<T, JSONInputArchive>::value>* = nullptr>
+	void loadValue(T& t) {	// load_array(Arcive&, T&)があるならばこっちにくる
+		m_arrayIndexStack.push(0);	// 配列アクセスが行われるので、最初のインデックスを積む
+		load_array(*this, t);
+		m_arrayIndexStack.pop();
+	}
+
 private:
 	rapidjson::IStreamWrapper m_readStream;
 	rapidjson::Document m_document;
