@@ -48,6 +48,20 @@ void serialize_array(JSONOutputArchive& archive, vector<T, A>& v)
 		archive(t);
 	}
 }
+
+// save版
+struct Piyo {
+	int a = 987;
+	const char* c = "piyopiyopiyo";
+	double d = 999.11;
+
+	void save(JSONOutputArchive& archive) {
+		archive(make_nvp("a", a));
+		archive(make_nvp("c", c));
+		archive(make_nvp("d", d));
+	}
+	//void serialize(JSONOutputArchive& archive) {}		// 両方定義するとコンパイルエラーになる
+};
 } //namespace
 
 void jsonWriteTest() {
@@ -95,6 +109,9 @@ void jsonWriteTest() {
 
 		vector<vector<int>> vecvec = { { 1,2,3 },{ 4,5,6 } };
 		archive(make_nvp("vecvec", vecvec));
+
+		Piyo piyo;
+		archive(make_nvp("piyo", piyo));
 	}
 
 	const string& result = s.str();

@@ -81,6 +81,28 @@ private:
 	}
 
 
+	/* save版の実装はserialize版のコピペ ----------------*/
+	template<class T, std::enable_if_t<has_memfun_save<T, JSONOutputArchive>::value>* = nullptr>
+	void saveValue(T& t) {	// saveメンバ関数を持ってればこっちにくる
+		m_writer.StartObject();
+		t.save(*this);
+		m_writer.EndObject();
+	}
+
+	template<class T, std::enable_if_t<has_fun_save<T, JSONOutputArchive>::value>* = nullptr>
+	void saveValue(T& t) {	// save(Arcive&, T&)があるならばこっちにくる
+		m_writer.StartObject();
+		save(*this, t);
+		m_writer.EndObject();
+	}
+
+	template<class T, std::enable_if_t<has_fun_save_array<T, JSONOutputArchive>::value>* = nullptr>
+	void saveValue(T& t) {	// save_array(Arcive&, T&)があるならばこっちにくる
+		m_writer.StartArray();
+		save_array(*this, t);
+		m_writer.EndArray();
+	}
+
 private:
 	rapidjson::OStreamWrapper m_writeStream;
 	rapidjson::Writer<rapidjson::OStreamWrapper> m_writer;
