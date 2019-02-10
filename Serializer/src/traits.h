@@ -39,7 +39,13 @@ DEF_HAS_MEMFUN(serialize);		//v.serialize(a);
 DEF_HAS_FUN(serialize);			//serialize(a, v);
 DEF_HAS_FUN(serialize_array);	//serialize_array(a, v);
 
+DEF_HAS_MEMFUN(save);			//v.save(a);
+DEF_HAS_FUN(save);				//save(a, v);
+DEF_HAS_FUN(save_array);		//save_array(a, v);
 
+DEF_HAS_MEMFUN(load);			//v.load(a);
+DEF_HAS_FUN(load);				//load(a, v);
+DEF_HAS_FUN(load_array);		//load_array(a, v);
 
 
 #if 0
