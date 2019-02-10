@@ -110,7 +110,7 @@ private:
 	}
 
 	
-	// load版の実装はserialize版のコピペ
+	/* load版の実装はserialize版のコピペ ----------------*/
 	template<class T, std::enable_if_t<has_memfun_load<T, JSONInputArchive>::value>* = nullptr>
 	void loadValue(T& t) {	// loadメンバ関数を持ってればこっちにくる
 		t.load(*this);
