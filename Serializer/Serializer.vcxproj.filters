@@ -28,6 +28,9 @@
     <Filter Include="ソース ファイル\test">
       <UniqueIdentifier>{fe9eef4f-7db8-4f89-9e55-0832debb98cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\stl">
+      <UniqueIdentifier>{61e865d4-a3f7-4892-b7a2-bd6514936ad1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -46,6 +49,9 @@
       <Filter>ソース ファイル\test</Filter>
     </ClCompile>
     <ClCompile Include="src\test\JsonReadTest.cpp">
+      <Filter>ソース ファイル\test</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test\ContainerTest.cpp">
       <Filter>ソース ファイル\test</Filter>
     </ClCompile>
   </ItemGroup>
@@ -172,6 +178,45 @@
     </ClInclude>
     <ClInclude Include="src\SizeTag.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\array.hpp">
+      <Filter>ソース ファイル\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\bitset.hpp">
+      <Filter>ソース ファイル\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\deque.hpp">
+      <Filter>ソース ファイル\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\forward_list.hpp">
+      <Filter>ソース ファイル\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\list.hpp">
+      <Filter>ソース ファイル\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\map.hpp">
+      <Filter>ソース ファイル\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\pair.hpp">
+      <Filter>ソース ファイル\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\queue.hpp">
+      <Filter>ソース ファイル\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\set.hpp">
+      <Filter>ソース ファイル\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\stack.hpp">
+      <Filter>ソース ファイル\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\unordered_map.hpp">
+      <Filter>ソース ファイル\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\unordered_set.hpp">
+      <Filter>ソース ファイル\stl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stl\vector.hpp">
+      <Filter>ソース ファイル\stl</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

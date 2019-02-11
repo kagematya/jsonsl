@@ -8,6 +8,7 @@ extern void rapidjsonWriteTest();
 extern void traitsTest();
 extern void jsonWriteTest();
 extern void jsonReadTest();
+extern void containerTest();
 
 
 void helpMain()
@@ -18,6 +19,7 @@ void helpMain()
 	cout << "3: traitsTest" << endl;
 	cout << "4: jsonWriteTest" << endl;
 	cout << "5: jsonReadTest" << endl;
+	cout << "6: containerTest" << endl;
 }
 
 void parseKey(char key)
@@ -29,6 +31,7 @@ void parseKey(char key)
 		{'3', traitsTest},
 		{'4', jsonWriteTest},
 		{'5', jsonReadTest},
+		{'6', containerTest},
 	};
 	
 	auto it = func.find(key);

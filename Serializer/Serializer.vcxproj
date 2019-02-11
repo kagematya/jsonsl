@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\test\ContainerTest.cpp" />
     <ClCompile Include="src\test\JsonReadTest.cpp" />
     <ClCompile Include="src\test\JsonWriteTest.cpp" />
     <ClCompile Include="src\test\RapidjsonReadTest.cpp" />
@@ -163,6 +164,19 @@
     <ClInclude Include="src\rapidjson\stringbuffer.h" />
     <ClInclude Include="src\rapidjson\writer.h" />
     <ClInclude Include="src\SizeTag.h" />
+    <ClInclude Include="src\stl\array.hpp" />
+    <ClInclude Include="src\stl\bitset.hpp" />
+    <ClInclude Include="src\stl\deque.hpp" />
+    <ClInclude Include="src\stl\forward_list.hpp" />
+    <ClInclude Include="src\stl\list.hpp" />
+    <ClInclude Include="src\stl\map.hpp" />
+    <ClInclude Include="src\stl\pair.hpp" />
+    <ClInclude Include="src\stl\queue.hpp" />
+    <ClInclude Include="src\stl\set.hpp" />
+    <ClInclude Include="src\stl\stack.hpp" />
+    <ClInclude Include="src\stl\unordered_map.hpp" />
+    <ClInclude Include="src\stl\unordered_set.hpp" />
+    <ClInclude Include="src\stl\vector.hpp" />
     <ClInclude Include="src\traits.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
