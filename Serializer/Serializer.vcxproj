@@ -119,6 +119,7 @@
     <ClCompile Include="src\test\ContainerTest.cpp" />
     <ClCompile Include="src\test\JsonReadTest.cpp" />
     <ClCompile Include="src\test\JsonWriteTest.cpp" />
+    <ClCompile Include="src\test\OptionalTest.cpp" />
     <ClCompile Include="src\test\RapidjsonReadTest.cpp" />
     <ClCompile Include="src\test\RapidjsonWriteTest.cpp" />
     <ClCompile Include="src\test\TraitsTest.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="src\JSONInputArchive.h" />
     <ClInclude Include="src\JSONOutputArchive.h" />
     <ClInclude Include="src\NameValuePair.h" />
+    <ClInclude Include="src\OptionalNameValuePair.h" />
     <ClInclude Include="src\rapidjson\allocators.h" />
     <ClInclude Include="src\rapidjson\cursorstreamwrapper.h" />
     <ClInclude Include="src\rapidjson\document.h" />

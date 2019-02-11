@@ -3,6 +3,7 @@
 #include "traits.h"
 #include "SizeTag.h"
 #include "NameValuePair.h"
+#include "OptionalNameValuePair.h"
 #include "rapidjson/ostreamwrapper.h"
 #include "rapidjson/writer.h"
 #include <string>
@@ -38,6 +39,15 @@ public:
 		static_assert(!std::is_pointer<T>::value || std::is_same<T, const char*>::value, "Pointer is not serialized");	// ポインタはシリアライズ非対応
 
 		m_writer.Key(nvp.m_name);
+		saveValue(nvp.m_value);
+		return *this;
+	}
+
+	template<class T>
+	JSONOutputArchive& operator()(OptionalNameValuePair<T>& nvp) {
+		static_assert(!std::is_pointer<T>::value || std::is_same<T, const char*>::value, "Pointer is not serialized");	// ポインタはシリアライズ非対応
+
+		m_writer.Key(nvp.m_name);	// 書き込みはNameValuePairと同様に行う
 		saveValue(nvp.m_value);
 		return *this;
 	}

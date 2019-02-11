@@ -9,6 +9,7 @@ extern void traitsTest();
 extern void jsonWriteTest();
 extern void jsonReadTest();
 extern void containerTest();
+extern void optionalTest();
 
 
 void helpMain()
@@ -20,6 +21,7 @@ void helpMain()
 	cout << "4: jsonWriteTest" << endl;
 	cout << "5: jsonReadTest" << endl;
 	cout << "6: containerTest" << endl;
+	cout << "7: optionalTest" << endl;
 }
 
 void parseKey(char key)
@@ -32,6 +34,7 @@ void parseKey(char key)
 		{'4', jsonWriteTest},
 		{'5', jsonReadTest},
 		{'6', containerTest},
+		{'7', optionalTest},
 	};
 	
 	auto it = func.find(key);

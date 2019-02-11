@@ -3,6 +3,7 @@
 #include "traits.h"
 #include "SizeTag.h"
 #include "NameValuePair.h"
+#include "OptionalNameValuePair.h"
 #include "rapidjson/document.h"
 #include "rapidjson/istreamwrapper.h"
 #include <stack>
@@ -65,6 +66,23 @@ public:
 		// keyを探す
 		rapidjson::Value::MemberIterator it = m_stack.top()->FindMember(nvp.m_name);
 		assert(it != m_stack.top()->MemberEnd());
+		
+		m_stack.push(&(it->value));
+		loadValue(nvp.m_value);
+		m_stack.pop();
+		
+		return *this;
+	}
+
+	template<class T>
+	JSONInputArchive& operator()(OptionalNameValuePair<T>& nvp) {
+		static_assert(!std::is_pointer<T>::value, "Pointer is not serialized");	// ポインタはシリアライズ非対応
+
+		// keyを探す
+		rapidjson::Value::MemberIterator it = m_stack.top()->FindMember(nvp.m_name);
+		if (it == m_stack.top()->MemberEnd()) {
+			return *this;		// 見つからなかったのでスキップ
+		}
 		
 		m_stack.push(&(it->value));
 		loadValue(nvp.m_value);
