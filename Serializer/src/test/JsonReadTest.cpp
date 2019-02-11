@@ -1,4 +1,5 @@
 ﻿#include "JSONInputArchive.h"
+#include "stl/vector.hpp"
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -69,17 +70,6 @@ void serialize(JSONInputArchive& archive, Vector2& v)
 	archive(make_nvp("y", v.y));
 }
 
-template<class T, class A>
-void serialize_array(JSONInputArchive& archive, vector<T, A>& v)
-{
-	size_t size;
-	archive(make_size_tag(size));
-
-	v.resize(size);
-	for (T& t : v) {
-		archive(t);
-	}
-}
 
 // load版
 struct Piyo {

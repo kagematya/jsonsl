@@ -1,4 +1,5 @@
 ﻿#include "JSONOutputArchive.h"
+#include "stl/vector.hpp"
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -39,15 +40,6 @@ void serialize(JSONOutputArchive& archive, Vector2& v)
 	archive(make_nvp("y", v.y));
 }
 
-
-template<class T, class A>
-void serialize_array(JSONOutputArchive& archive, vector<T, A>& v)
-{
-	archive(make_size_tag(v.size()));
-	for (T& t : v) {
-		archive(t);
-	}
-}
 
 // save版
 struct Piyo {
@@ -112,6 +104,10 @@ void jsonWriteTest() {
 
 		Piyo piyo;
 		archive(make_nvp("piyo", piyo));
+
+
+		bool boo = true;
+		archive(make_nvp("bool", boo));
 	}
 
 	const string& result = s.str();
