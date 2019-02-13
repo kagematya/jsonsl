@@ -2,6 +2,7 @@
 #include "JSONOutputArchive.h"
 #include <iostream>
 using namespace std;
+using namespace jsonsl;
 
 namespace {
 struct Hoge {

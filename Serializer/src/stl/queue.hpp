@@ -4,6 +4,8 @@
 
 //todo:std::priority_queue
 
+namespace jsonsl {
+
 
 template <class Archive, class T, class C>
 void save(Archive& ar, std::queue<T, C>& queue)
@@ -22,3 +24,4 @@ void load(Archive& ar, std::queue<T, C>& queue)
 	queue = std::queue<T, C>( std::move(container) );
 }
 
+} // namespace jsonsl

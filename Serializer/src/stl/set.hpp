@@ -2,6 +2,8 @@
 #include "SizeTag.h"
 #include <set>
 
+namespace jsonsl {
+
 
 // set
 template <class Archive, class K, class C, class A>
@@ -57,3 +59,5 @@ void load_array(Archive& ar, std::multiset<K, C, A>& multiset)
 		hint = multiset.emplace_hint(hint, std::move(key));
 	}
 }
+
+} // namespace jsonsl

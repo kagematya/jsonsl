@@ -3,6 +3,8 @@
 #include "pair.hpp"
 #include <map>
 
+namespace jsonsl {
+
 
 template <class Archive, class K, class T, class C, class A>
 void save_array(Archive& ar, std::map<K, T, C, A>& map)
@@ -29,3 +31,5 @@ void load_array(Archive& ar, std::map<K, T, C, A>& map)
 		map.insert(std::move(v));
 	}
 }
+
+} // namespace jsonsl

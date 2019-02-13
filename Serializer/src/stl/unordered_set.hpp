@@ -2,6 +2,8 @@
 #include "SizeTag.h"
 #include <unordered_set>
 
+namespace jsonsl {
+
 
 // unordered_set
 template <class Archive, class K, class H, class P, class A>
@@ -59,3 +61,5 @@ void load_array(Archive& ar, std::unordered_multiset<K, H, P, A>& unordered_mult
 		unordered_multiset.emplace(std::move(key));
 	}
 }
+
+} // namespace jsonsl

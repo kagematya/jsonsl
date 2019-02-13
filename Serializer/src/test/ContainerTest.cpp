@@ -16,6 +16,7 @@
 #include <iostream>
 #include <sstream>
 using namespace std;
+using namespace jsonsl;
 
 namespace {
 struct Hoge {

@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <array>
 
+namespace jsonsl {
+
 
 template <class Archive, class T, size_t N>
 void save_array(Archive& ar, std::array<T, N>& array)
@@ -17,3 +19,5 @@ void load_array(Archive& ar, std::array<T, N>& array)
 		ar(v);
 	}
 }
+
+} // namespace jsonsl

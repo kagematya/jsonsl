@@ -3,6 +3,8 @@
 #include "pair.hpp"
 #include <unordered_map>
 
+namespace jsonsl {
+
 
 template <class Archive, class K, class T, class H, class P, class A>
 void save_array(Archive& ar, std::unordered_map<K, T, H, P, A>& unordered_map)
@@ -29,3 +31,5 @@ void load_array(Archive& ar, std::unordered_map<K, T, H, P, A>& unordered_map)
 		unordered_map.insert(std::move(v));
 	}
 }
+
+} // namespace jsonsl

@@ -3,6 +3,9 @@
 #include <vector>
 //todo:vector<bool>
 
+namespace jsonsl {
+
+
 template <class Archive, class T, class A>
 void save_array(Archive& ar, std::vector<T, A>& vector)
 {
@@ -23,3 +26,5 @@ void load_array(Archive& ar, std::vector<T, A>& vector)
 		ar(v);
 	}
 }
+
+} // namespace jsonsl

@@ -8,6 +8,7 @@
 #include "rapidjson/writer.h"
 #include <string>
 
+namespace jsonsl {
 
 /**
  * JSON形式で出力する
@@ -118,3 +119,4 @@ private:
 	rapidjson::Writer<rapidjson::OStreamWrapper> m_writer;
 };
 
+} // namespace jsonsl

@@ -2,6 +2,8 @@
 #include "NameValuePair.h"
 #include <stack>
 
+namespace jsonsl {
+
 
 template <class Archive, class T, class C>
 void save(Archive& ar, std::stack<T, C>& stack)
@@ -18,3 +20,5 @@ void load(Archive& ar, std::stack<T, C>& stack)
 	ar(make_nvp("container", container));
 	stack = std::stack<T, C>( std::move(container) );
 }
+
+} // namespace jsonsl

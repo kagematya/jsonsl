@@ -2,6 +2,8 @@
 #include "SizeTag.h"
 #include <list>
 
+namespace jsonsl {
+
 
 template <class Archive, class T, class A>
 void save_array(Archive& ar, std::list<T, A>& list)
@@ -24,3 +26,4 @@ void load_array(Archive& ar, std::list<T, A>& list)
 	}
 }
 
+} // namespace jsonsl

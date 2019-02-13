@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 using namespace std;
+using namespace jsonsl;
 
 static const char* s_json = R"(
 {

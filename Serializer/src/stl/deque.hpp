@@ -2,6 +2,8 @@
 #include "SizeTag.h"
 #include <deque>
 
+namespace jsonsl {
+
 
 template <class Archive, class T, class A>
 void save_array(Archive& ar, std::deque<T, A>& deque)
@@ -25,3 +27,5 @@ void load_array(Archive& ar, std::deque<T, A>& deque )
 		ar(v);
 	}
 }
+
+} // namespace jsonsl

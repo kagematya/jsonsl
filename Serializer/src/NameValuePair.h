@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 
+namespace jsonsl {
+
 /**
  * key-valueの構造
  */
@@ -29,3 +31,4 @@ NameValuePair<T> make_nvp(const char* name, T&& value)
 	return { name, value };	// 一時変数用だけど残すかどうか微妙
 }
 
+} // namespace jsonsl

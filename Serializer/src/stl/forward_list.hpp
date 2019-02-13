@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <forward_list>
 
+namespace jsonsl {
+
 
 template <class Archive, class T, class A>
 void save_array(Archive& ar, std::forward_list<T, A>& forward_list)
@@ -28,3 +30,4 @@ void load_array(Archive& ar, std::forward_list<T, A>& forward_list)
 	}
 }
 
+} // namespace jsonsl

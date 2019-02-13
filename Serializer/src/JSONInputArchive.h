@@ -8,6 +8,7 @@
 #include "rapidjson/istreamwrapper.h"
 #include <stack>
 
+namespace jsonsl {
 
 /**
  * JSON形式を読み取る
@@ -154,3 +155,4 @@ private:
 	std::stack<int> m_arrayIndexStack;		// 配列のインデックスを保存する
 };
 
+} // namespace jsonsl
