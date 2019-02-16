@@ -111,6 +111,10 @@ private:
 	void loadValue(std::string& s)	{ s = m_stack.top()->GetString();	}
 	//void loadValue(std::nullptr_t&)	{ m_writer.Null();		}
 
+	void loadValue(char& c)			{ c = m_stack.top()->GetInt();		}
+	void loadValue(unsigned char& c){ c = m_stack.top()->GetUint();		}
+
+
 	template<class T, std::enable_if_t<std::is_enum<T>::value>* = nullptr>
 	void loadValue(T& t) {	// enum class用
 		loadValue( reinterpret_cast< std::underlying_type<T>::type & >(t));

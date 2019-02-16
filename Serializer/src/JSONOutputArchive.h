@@ -70,6 +70,10 @@ private:
 	void saveValue(const std::string& s) { m_writer.String(s.c_str(), static_cast<rapidjson::SizeType>(s.size())); }
 	//void saveValue(std::nullptr_t)	{ m_writer.Null();		}
 
+	void saveValue(char c)			{ m_writer.Int(c);		}
+	void saveValue(unsigned char c)	{ m_writer.Uint(c);		}
+
+
 	template<class T, std::enable_if_t<std::is_enum<T>::value>* = nullptr>
 	void saveValue(T& t) {	// enum class用
 		saveValue( static_cast< std::underlying_type<T>::type >(t) );
