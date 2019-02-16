@@ -111,6 +111,11 @@ private:
 	void loadValue(std::string& s)	{ s = m_stack.top()->GetString();	}
 	//void loadValue(std::nullptr_t&)	{ m_writer.Null();		}
 
+	template<class T, std::enable_if_t<std::is_enum<T>::value>* = nullptr>
+	void loadValue(T& t) {	// enum class用
+		loadValue( reinterpret_cast< std::underlying_type<T>::type & >(t));
+	}
+
 	template<class T, std::enable_if_t<has_memfun_serialize<T, JSONInputArchive>::value>* = nullptr>
 	void loadValue(T& t) {	// serializeメンバ関数を持ってればこっちにくる
 		t.serialize(*this);

@@ -32,7 +32,9 @@ static const char* s_json = R"(
 		"x" : 888,
 		"y" : 777
 	},
-	"arrayarray" : [[0,1,2,3,4,5], [6,7,8,9,10]]
+	"arrayarray" : [[0,1,2,3,4,5], [6,7,8,9,10]],
+	"enumValue" : 1,
+	"enumClassValue" : 2
 }
 )";
 
@@ -85,6 +87,19 @@ struct Piyo {
 	}
 	//void serialize(JSONInputArchive& archive) {}		// 両方定義するとコンパイルエラーになる
 };
+
+enum EnumValue {
+	EnumValueA,
+	EnumValueB,
+	EnumValueC,
+};
+
+enum class EnumClassValue {
+	A,
+	B,
+	C,
+};
+
 } //namespace
 
 void jsonReadTest() {
@@ -141,6 +156,14 @@ void jsonReadTest() {
 
 		//int val;
 		//archive(make_nvp("pointer", &val));	// これはstatic_assertになる
+
+		EnumValue enumValue = EnumValueA;
+		archive(make_nvp("enumValue", enumValue));
+		cout << "enumValue:" << static_cast<int>(enumValue) << endl;
+
+		EnumClassValue enumClassValue = EnumClassValue::A;
+		archive(make_nvp("enumClassValue", enumClassValue));
+		cout << "enumClassValue:" << static_cast<int>(enumClassValue) << endl;
 	}
 }
 

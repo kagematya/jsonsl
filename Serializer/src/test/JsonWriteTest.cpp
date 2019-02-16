@@ -55,6 +55,19 @@ struct Piyo {
 	}
 	//void serialize(JSONOutputArchive& archive) {}		// 両方定義するとコンパイルエラーになる
 };
+
+enum EnumValue {
+	EnumValueA,
+	EnumValueB,
+	EnumValueC,
+};
+
+enum class EnumClassValue {
+	A,
+	B,
+	C,
+};
+
 } //namespace
 
 void jsonWriteTest() {
@@ -109,6 +122,12 @@ void jsonWriteTest() {
 
 		bool boo = true;
 		archive(make_nvp("bool", boo));
+
+		EnumValue enumValue = EnumValueB;
+		archive(make_nvp("enumValue", enumValue));
+
+		EnumClassValue enumClassValue = EnumClassValue::C;
+		archive(make_nvp("enumClassValue", enumClassValue));
 	}
 
 	const string& result = s.str();
