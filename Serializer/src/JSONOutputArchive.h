@@ -26,7 +26,12 @@ public:
 		m_writer.EndObject();
 	}
 
-	
+	// 書き込み用か？
+	bool isWriter() const {
+		return true;
+	}
+
+
 	template<class T>
 	JSONOutputArchive& operator()(T& t) {	// 配列出力用
 		static_assert(!std::is_pointer<T>::value || std::is_same<T, const char*>::value, "Pointer is not serialized");	// ポインタはシリアライズ非対応

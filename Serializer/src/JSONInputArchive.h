@@ -30,6 +30,10 @@ public:
 	{
 	}
 
+	// 書き込み用か？
+	bool isWriter() const {
+		return false;
+	}
 
 	/**
 	 * @note
