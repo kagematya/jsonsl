@@ -1,4 +1,5 @@
 ﻿#include "JSONOutputArchive.h"
+#include "JsonslUtil.h"
 #include "stl/vector.hpp"
 #include <iostream>
 #include <sstream>
@@ -132,5 +133,12 @@ void jsonWriteTest() {
 
 	const string& result = s.str();
 	cout << result;
+
+	cout << endl;
+	cout << "----------" << endl;
+	cout << "reformat" << endl;
+
+	string formatStr = JsonslUtil::reformat(result.c_str());
+	cout << formatStr << endl;
 }
 

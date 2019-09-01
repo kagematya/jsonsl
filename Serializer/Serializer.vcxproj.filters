@@ -224,5 +224,8 @@
     <ClInclude Include="src\OptionalNameValuePair.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="src\JsonslUtil.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
